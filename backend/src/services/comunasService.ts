@@ -20,12 +20,18 @@ class ComunasService {
   public init(): void {
     if (this.isLoaded) return;
 
-    // Ruta de Tabla Ciudades.xlsx está en la raíz del proyecto (dos niveles arriba de src/services)
-    const xlsxPath = path.resolve(__dirname, '../../../Tabla Ciudades.xlsx');
+    // Ruta de Tabla Ciudades.xlsx con búsqueda en backend/data y raíz del proyecto
+    const possiblePaths = [
+      path.resolve(__dirname, '../../data/Tabla Ciudades.xlsx'),
+      path.resolve(__dirname, '../../../Tabla Ciudades.xlsx'),
+      path.resolve(process.cwd(), 'backend/data/Tabla Ciudades.xlsx'),
+      path.resolve(process.cwd(), 'Tabla Ciudades.xlsx'),
+    ];
+    const xlsxPath = possiblePaths.find(p => fs.existsSync(p)) || possiblePaths[0];
     console.log('[ComunasService] Cargando comunas desde:', xlsxPath);
 
     if (!fs.existsSync(xlsxPath)) {
-      console.warn('[ComunasService] Advertencia: No se encontró Tabla Ciudades.xlsx en la raíz.');
+      console.warn('[ComunasService] Advertencia: No se encontró Tabla Ciudades.xlsx.');
       return;
     }
 
