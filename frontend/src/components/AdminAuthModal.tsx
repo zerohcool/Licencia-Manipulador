@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { apiFetch } from '../utils/api';
 
 interface AdminAuthModalProps {
   isOpen: boolean;
@@ -16,48 +15,23 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
 }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   if (!isOpen) return null;
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!password.trim()) {
       setError('Por favor, ingresa la contraseña.');
       return;
     }
 
-    setLoading(true);
-    setError(null);
-
-    try {
-      if (password === 'Enaex.2026') {
-        onSuccess(password);
-        setPassword('');
-        return;
-      }
-
-      // Si no coincide con la clave local, intentar opcionalmente con backend si estuviera disponible
-      try {
-        const res = await apiFetch('/api/admin/verify', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ password })
-        });
-        const data = await res.json();
-        if (data.success) {
-          onSuccess(password);
-          setPassword('');
-          return;
-        }
-      } catch {
-        // Ignorar fallo de red
-      }
-
+    if (password === 'Enaex.2026') {
+      onSuccess(password);
+      setPassword('');
+      setError(null);
+    } else {
       setError('Contraseña incorrecta. Acceso denegado.');
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -164,7 +138,6 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
                 setError(null);
                 onClose();
               }}
-              disabled={loading}
               style={{ flex: 1 }}
             >
               Cancelar
@@ -172,10 +145,9 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
             <button
               type="submit"
               className="btn btn-primary"
-              disabled={loading}
               style={{ flex: 1 }}
             >
-              {loading ? 'Verificando...' : 'Acceder'}
+              Acceder
             </button>
           </div>
         </form>

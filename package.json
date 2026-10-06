@@ -4,9 +4,8 @@
   "private": true,
   "description": "Sistema de generación de solicitudes de licencia manipulador de explosivos con plantillas Word y Supabase",
   "scripts": {
+    "dev": "npm run dev --prefix frontend",
     "build": "npm run build --prefix frontend",
-    "build:frontend": "npm run build --prefix frontend",
-    "build:backend": "npm run build --prefix backend",
-    "start": "node backend/dist/server.js"
+    "preview": "npm run preview --prefix frontend"
   }
 }
