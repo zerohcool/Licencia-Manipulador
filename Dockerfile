@@ -18,10 +18,9 @@ RUN cd backend && npm install
 COPY backend/ ./backend/
 RUN cd backend && npm run build
 
-# Copiar archivos raíz con sintaxis JSON para soportar espacios en blanco
+# Copiar archivos raíz de plantillas y tablas requeridas
 COPY ["Tabla Ciudades.xlsx", "./"]
 COPY ["Documentos Plantilla.docm", "./"]
-COPY package.json ./
 
 # 2. Instalar y compilar Frontend
 COPY frontend/package*.json ./frontend/

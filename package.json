@@ -1,0 +1,12 @@
+{
+  "name": "licencia-manipulador",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sistema de generación de solicitudes de licencia manipulador de explosivos con plantillas Word, PDF y Supabase",
+  "scripts": {
+    "build:backend": "npm run build --prefix backend",
+    "build:frontend": "npm run build --prefix frontend",
+    "build": "npm run build:backend && npm run build:frontend",
+    "start": "node backend/dist/server.js"
+  }
+}
