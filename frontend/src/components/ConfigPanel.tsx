@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { formatRut, validateRut } from '../utils/validation';
-import { apiFetch, apiUrl } from '../utils/api';
+import { getRemoteConfig, saveRemoteConfig, getActiveTemplate, uploadActiveTemplate } from '../services/dataService';
+import { analyzeDocxVariablesInBrowser } from '../utils/docxProcessor';
 import comunasChileData from '../data/comunasChile.json';
 import defaultConfig from '../data/defaultConfig.json';
 
@@ -112,7 +113,7 @@ interface ConfigPanelProps {
   onLogoutAdmin?: () => void;
 }
 
-export default function ConfigPanel({ onConfigChange, adminPassword, onLogoutAdmin }: ConfigPanelProps) {
+export default function ConfigPanel({ onConfigChange, onLogoutAdmin }: ConfigPanelProps) {
   const [config, setConfig] = useState<AppConfig | null>(defaultConfig as unknown as AppConfig);
   const [comunas, setComunas] = useState<ComunaInfo[]>(comunasChileData as ComunaInfo[]);
   const [activeTab, setActiveTab] = useState<'docs' | 'companyWorkplaces' | 'hsec' | 'variables'>('docs');
@@ -151,10 +152,9 @@ export default function ConfigPanel({ onConfigChange, adminPassword, onLogoutAdm
 
   const loadConfig = async () => {
     try {
-      const response = await apiFetch('/api/config');
-      const data = await response.json();
-      if (data.success) {
-        setConfig(data.config);
+      const res = await getRemoteConfig();
+      if (res && res.config) {
+        setConfig(res.config as unknown as AppConfig);
       }
     } catch {
       // Mantiene la configuración por defecto
@@ -163,11 +163,8 @@ export default function ConfigPanel({ onConfigChange, adminPassword, onLogoutAdm
 
   const loadComunas = async () => {
     try {
-      const response = await apiFetch('/api/comunas');
-      const data = await response.json();
-      if (data.success && Array.isArray(data.comunas) && data.comunas.length > 0) {
-        setComunas(data.comunas);
-      }
+      // Usar catálogo local garantizado de 346 comunas
+      setComunas(comunasChileData as ComunaInfo[]);
     } catch {
       // Mantiene las 346 comunas de respaldo
     }
@@ -180,24 +177,16 @@ export default function ConfigPanel({ onConfigChange, adminPassword, onLogoutAdm
 
   const saveConfig = async (updatedConfig: AppConfig) => {
     try {
-      const response = await apiFetch('/api/config', {
-        method: 'PUT',
-        headers: { 
-          'Content-Type': 'application/json',
-          ...(adminPassword ? { 'x-admin-password': adminPassword } : {})
-        },
-        body: JSON.stringify(updatedConfig)
-      });
-      const data = await response.json();
-      if (data.success) {
+      const res = await saveRemoteConfig(updatedConfig);
+      if (res.success) {
         setConfig(updatedConfig);
-        showMsg('Configuración guardada exitosamente.', 'success');
+        showMsg('Configuración guardada en Supabase exitosamente.', 'success');
         onConfigChange();
       } else {
-        showMsg(data.error || 'Error al guardar configuración.', 'error');
+        showMsg(res.error || 'Error al guardar configuración en Supabase.', 'error');
       }
     } catch {
-      showMsg('Error de conexión al guardar configuración.', 'error');
+      showMsg('Error de conexión al guardar configuración en Supabase.', 'error');
     }
   };
 
@@ -217,40 +206,54 @@ export default function ConfigPanel({ onConfigChange, adminPassword, onLogoutAdm
     
     setUploadingDocId(docId);
     setUploadResult(null);
-    
-    const formData = new FormData();
-    formData.append('template', selectedFile);
 
     try {
-      const response = await apiFetch(`/api/config/templates/${docId}`, {
-        method: 'POST',
-        headers: {
-          ...(adminPassword ? { 'x-admin-password': adminPassword } : {})
-        },
-        body: formData
-      });
-      const data = await response.json();
-      if (data.success) {
+      // 1. Analizar variables de la plantilla directamente en el navegador
+      const arrayBuf = await selectedFile.arrayBuffer();
+      const required = config?.variableMappings?.map(v => v.wordPlaceholder) || [];
+      const analysis = analyzeDocxVariablesInBrowser(arrayBuf, required);
+
+      // 2. Guardar en Supabase permanentemente
+      const res = await uploadActiveTemplate(selectedFile);
+      if (res.success) {
         setUploadResult({
           success: true,
-          analysis: data.analysis
+          analysis
         });
-        showMsg('Plantilla subida y analizada correctamente.', 'success');
+        showMsg('Plantilla subida y guardada permanentemente en Supabase.', 'success');
         loadConfig(); // Recargar datos
         setSelectedFile(null);
       } else {
         setUploadResult({
           success: false,
-          error: data.error
+          error: res.error || 'Error al guardar en Supabase'
         });
       }
     } catch (err: any) {
       setUploadResult({
         success: false,
-        error: 'Error de conexión al subir la plantilla.'
+        error: 'Error al procesar y subir la plantilla a Supabase.'
       });
     } finally {
       setUploadingDocId(null);
+    }
+  };
+
+  const handleDownloadSampleTemplate = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    try {
+      const tpl = await getActiveTemplate();
+      const blob = new Blob([tpl.binary as unknown as BlobPart], { type: 'application/vnd.ms-word.document.macroEnabled.12' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = tpl.filename || 'Documentos_Plantilla.docm';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      alert('Error al descargar la plantilla desde Supabase.');
     }
   };
 
@@ -608,9 +611,9 @@ export default function ConfigPanel({ onConfigChange, adminPassword, onLogoutAdm
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem', lineHeight: '1.6' }}>
                   El sistema utiliza una plantilla de Word maestra (
                   <a 
-                    href={apiUrl('/api/config/template/download')} 
-                    download="Documentos_Plantilla.docm"
-                    title="Descargar plantilla maestra actual con sus MERGEFIELD"
+                    href="#descargar-muestra"
+                    onClick={handleDownloadSampleTemplate}
+                    title="Descargar plantilla maestra actual con sus MERGEFIELD desde Supabase"
                     style={{ 
                       display: 'inline-flex', 
                       alignItems: 'center', 

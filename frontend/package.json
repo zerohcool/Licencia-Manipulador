@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@daypicker/react": "^10.0.2",
+    "@supabase/supabase-js": "^2.117.2",
     "date-fns": "^4.4.0",
+    "pizzip": "^3.3.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },

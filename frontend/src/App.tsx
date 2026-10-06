@@ -4,7 +4,8 @@ import ConfigPanel from './components/ConfigPanel';
 import { DatePicker } from './components/DatePicker';
 import { AdminAuthModal } from './components/AdminAuthModal';
 import { RegistrosPanel } from './components/RegistrosPanel';
-import { apiUrl, apiFetch } from './utils/api';
+import { getRemoteConfig, saveSolicitudRecord, getActiveTemplate } from './services/dataService';
+import { fillMergeFieldsInBrowser, buildMergeData } from './utils/docxProcessor';
 import comunasChileData from './data/comunasChile.json';
 import defaultConfig from './data/defaultConfig.json';
 
@@ -150,9 +151,12 @@ export default function App() {
   
   const [loading, setLoading] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState('');
-  const [fileId, setFileId] = useState<string | null>(null);
-  const [generatedExt, setGeneratedExt] = useState('docx');
   const [apiError, setApiError] = useState<string | null>(null);
+
+  // Estados de generación directa en cliente y Supabase
+  const [downloadBlobUrl, setDownloadBlobUrl] = useState<string | null>(null);
+  const [downloadFilename, setDownloadFilename] = useState<string>('Solicitud_Licencia.docm');
+  const [registroId, setRegistroId] = useState<string | null>(null);
 
   useEffect(() => {
     loadConfig();
@@ -161,32 +165,24 @@ export default function App() {
 
   const loadConfig = async () => {
     try {
-      const response = await apiFetch('/api/config');
-      const data = await response.json();
-      if (data.success && data.config) {
-        setConfig(data.config);
+      const res = await getRemoteConfig();
+      if (res.config) {
+        setConfig(res.config);
         setFormData(prev => ({
           ...prev,
-          documentTypeId: prev.documentTypeId || data.config.documentTypes[0]?.id || '',
-          companyWorkplaceId: prev.companyWorkplaceId || data.config.companyWorkplaces[0]?.id || '',
-          hsecAId: prev.hsecAId || data.config.hsecProfessionals[0]?.id || ''
+          documentTypeId: prev.documentTypeId || res.config.documentTypes[0]?.id || '',
+          companyWorkplaceId: prev.companyWorkplaceId || res.config.companyWorkplaces[0]?.id || '',
+          hsecAId: prev.hsecAId || res.config.hsecProfessionals[0]?.id || ''
         }));
       }
     } catch (err) {
-      console.warn('Backend config no disponible temporalmente, usando configuración predeterminada:', err);
+      console.warn('Error al cargar configuración:', err);
     }
   };
 
   const loadComunas = async () => {
-    try {
-      const response = await apiFetch('/api/comunas');
-      const data = await response.json();
-      if (data.success && Array.isArray(data.comunas) && data.comunas.length > 0) {
-        setComunas(data.comunas);
-      }
-    } catch (err) {
-      console.warn('Backend comunas no disponible temporalmente, usando catálogo local de 346 comunas:', err);
-    }
+    // Las 346 comunas están indexadas localmente y se cargan al instante
+    setComunas(comunasChileData as ComunaInfo[]);
   };
 
   const handleNavigateToProtectedView = (target: 'config' | 'registros') => {
@@ -345,12 +341,12 @@ export default function App() {
     if (!config) return;
     setLoading(true);
     setApiError(null);
-    setLoadingMessage('Generando documento temporal...');
+    setLoadingMessage('Guardando registro de la solicitud en Supabase...');
 
     // Buscar información extendida para el Mail Merge
     const hsecA = config.hsecProfessionals.find(h => h.id === formData.hsecAId);
 
-    // Concatenar el prefijo estático al teléfono para enviar al servidor
+    // Concatenar el prefijo estático al teléfono
     const telefonoFormateado = `+56 9 ${formData.Fono_.slice(0, 4)} ${formData.Fono_.slice(4)}`;
 
     // Armar el Domicilio Laboral unificado
@@ -385,28 +381,45 @@ export default function App() {
     };
 
     try {
-      setTimeout(() => {
-        setLoadingMessage('Convirtiendo a PDF con LibreOffice Headless (esto puede tardar unos segundos)...');
-      }, 2000);
-
-      const response = await apiFetch('/api/generate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+      // 1. Guardar registro en Supabase (tabla solicitudes_licencia)
+      const saveRes = await saveSolicitudRecord({
+        rut: formData.Rut_,
+        nombre_completo: formData.Nombre_Completo,
+        empresa: selectedCompanyWorkplace ? selectedCompanyWorkplace.companyName : '',
+        faena: selectedCompanyWorkplace ? selectedCompanyWorkplace.workplaceName : '',
+        comuna: formData.Comuna,
+        cargo_desempeno: formData.Cargo,
+        motivo_solicitud: config.documentTypes.find(d => d.id === formData.documentTypeId)?.name || 'Solicitud de Licencia',
+        datos_formulario: payload
       });
 
-      const result = await response.json();
+      const recId = saveRes.id || `REG-${Date.now().toString().slice(-6)}`;
+      setRegistroId(recId);
 
-      if (result.success) {
-        setFileId(result.fileId);
-        setGeneratedExt(result.extension || 'docm');
-        setCurrentStep(4); // Ir al visor
-      } else {
-        setApiError(result.error || 'Ocurrió un error al procesar el documento.');
+      // 2. Obtener plantilla activa (.docm) desde Supabase
+      setLoadingMessage('Obteniendo plantilla oficial desde Supabase...');
+      const tpl = await getActiveTemplate();
+
+      // 3. Rellenar campos MERGEFIELD directamente en el navegador
+      setLoadingMessage('Completando campos del documento Word...');
+      const mergeData = buildMergeData(payload, config);
+      const generatedBlob = fillMergeFieldsInBrowser(tpl.binary, mergeData);
+
+      // 4. Crear ObjectURL para descarga directa
+      if (downloadBlobUrl) {
+        URL.revokeObjectURL(downloadBlobUrl);
       }
+      const blobUrl = URL.createObjectURL(generatedBlob);
+      const cleanRut = formData.Rut_.replace(/[^0-9kK]/g, '');
+      const cleanName = formData.Nombre_Completo.trim().replace(/\s+/g, '_');
+      const filename = `Solicitud_Licencia_${cleanRut}_${cleanName}.docm`;
+
+      setDownloadBlobUrl(blobUrl);
+      setDownloadFilename(filename);
+      setCurrentStep(4);
     } catch (err: any) {
-      console.error(err);
-      setApiError('Error de conexión con el backend de generación.');
+      console.error('Error generando documento:', err);
+      setApiError(err.message || 'Error al procesar y guardar la solicitud.');
     } finally {
       setLoading(false);
       setLoadingMessage('');
@@ -414,13 +427,17 @@ export default function App() {
   };
 
   const handleReset = () => {
+    if (downloadBlobUrl) {
+      URL.revokeObjectURL(downloadBlobUrl);
+      setDownloadBlobUrl(null);
+    }
     setFormData({
       ...initialFormState,
       documentTypeId: config?.documentTypes[0]?.id || '',
       companyWorkplaceId: config?.companyWorkplaces[0]?.id || '',
       hsecAId: config?.hsecProfessionals[0]?.id || ''
     });
-    setFileId(null);
+    setRegistroId(null);
     setApiError(null);
     setCurrentStep(0);
   };
@@ -938,59 +955,116 @@ export default function App() {
                   )}
 
                   {/* VISOR DE RESULTADOS Y DESCARGAS */}
-                  {currentStep === 4 && fileId && (
+                  {currentStep === 4 && (
                     <div>
                       <h2 className="step-title" style={{ color: 'var(--success)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        <span>✓</span> ¡Documentos Generados!
+                        <span>✓</span> ¡Documento Generado Exitosamente!
                       </h2>
-                      <p className="step-subtitle">El documento Word fue rellenado y convertido a PDF usando LibreOffice Headless con éxito.</p>
+                      <p className="step-subtitle">
+                        La solicitud ha sido registrada en Supabase y el archivo oficial Word (.docm) ha sido generado con todos los datos combinados.
+                      </p>
                       
-                      <div className="result-container">
-                        <div className="result-info">
-                          <div className="success-badge">
-                            <span>✓</span> Transacción {fileId.split('-')[0]}
+                      <div className="result-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
+                        <div className="result-info" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                          <div className="success-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: '#ecfdf5', color: '#047857', border: '1px solid #a7f3d0', padding: '0.4rem 0.8rem', borderRadius: '8px', fontWeight: 600, fontSize: '0.9rem', width: 'fit-content' }}>
+                            <span>✓</span> Registro ID: {registroId ? (registroId.length > 12 ? registroId.substring(0, 8) + '...' : registroId) : 'Completado'}
                           </div>
-                          <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)' }}>
-                            La descarga del archivo Word temporal o PDF se puede hacer a continuación. Los archivos se borrarán automáticamente en 15 minutos.
+                          
+                          <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: 1.5, margin: 0 }}>
+                            Haz clic a continuación para descargar el documento oficial con todos los campos del solicitante y de faena rellenados.
                           </p>
                           
-                          <div className="download-options">
+                          <div className="download-options" style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: '0.5rem' }}>
                             <a 
-                              href={apiUrl(`/api/download/${fileId}/pdf`)}
-                              className="btn btn-download btn-download-pdf"
-                            >
-                              <div style={{ fontWeight: 600 }}>Descargar Solicitud (PDF)</div>
-                              <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Formato Oficial de Impresión</span>
-                            </a>
-
-                            <a 
-                              href={apiUrl(`/api/download/${fileId}/docx`)}
+                              href={downloadBlobUrl || '#'}
+                              download={downloadFilename}
                               className="btn btn-download btn-download-word"
+                              style={{ 
+                                padding: '1rem 1.25rem', 
+                                borderRadius: '10px', 
+                                textDecoration: 'none',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                background: '#1d4ed8',
+                                color: 'white',
+                                boxShadow: '0 4px 12px rgba(29, 78, 216, 0.25)',
+                                cursor: 'pointer'
+                              }}
                             >
-                              <div style={{ fontWeight: 600 }}>Descargar Plantilla Word (.{generatedExt})</div>
-                              <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Copia editable con datos combinados</span>
+                              <div>
+                                <div style={{ fontWeight: 700, fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                  <span>📥</span> Descargar Documento Word (.docm)
+                                </div>
+                                <span style={{ fontSize: '0.8rem', opacity: 0.9 }}>
+                                  {downloadFilename}
+                                </span>
+                              </div>
+                              <span style={{ fontSize: '1.5rem', marginLeft: '1rem' }}>↓</span>
                             </a>
+                          </div>
+
+                          <div style={{
+                            background: '#f8fafc',
+                            border: '1px solid #e2e8f0',
+                            borderRadius: '10px',
+                            padding: '1rem',
+                            fontSize: '0.86rem',
+                            color: '#334155',
+                            lineHeight: 1.5,
+                            marginTop: '0.5rem'
+                          }}>
+                            <div style={{ fontWeight: 600, color: '#1e293b', marginBottom: '0.35rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                              <span>💡</span> ¿Cómo exportar o imprimir en PDF?
+                            </div>
+                            <span>Abre el archivo descargado en Microsoft Word o LibreOffice y selecciona <strong>Archivo &gt; Guardar como PDF</strong> o <strong>Imprimir &gt; Guardar como PDF</strong> para obtener el documento oficial en formato PDF listo para firmar.</span>
                           </div>
 
                           <button 
                             className="btn btn-secondary" 
-                            style={{ marginTop: '1.5rem', alignSelf: 'flex-start' }}
+                            style={{ marginTop: '0.5rem', alignSelf: 'flex-start' }}
                             onClick={handleReset}
                           >
                             Generar Nueva Solicitud
                           </button>
                         </div>
 
-                        <div className="pdf-viewer-container">
-                          <div style={{ padding: '0.75rem 1rem', background: 'var(--border)', fontSize: '0.85rem', fontWeight: 600, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <span>Previsualización del PDF</span>
-                            <span style={{ background: 'white', padding: '0.1rem 0.4rem', borderRadius: '4px', fontSize: '0.75rem' }}>Nativo</span>
+                        {/* Ficha Resumen del Registro Guardado */}
+                        <div style={{ 
+                          background: 'white', 
+                          border: '1px solid var(--border)', 
+                          borderRadius: '12px', 
+                          padding: '1.25rem',
+                          boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
+                        }}>
+                          <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '0.75rem', borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem' }}>
+                            📋 Resumen de la Solicitud Guardada
                           </div>
-                          <iframe 
-                            src={apiUrl(`/temp/solicitud-${fileId}.pdf`)}
-                            className="pdf-iframe"
-                            title="Visor PDF de la Solicitud"
-                          />
+                          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.6rem', fontSize: '0.85rem' }}>
+                            <div>
+                              <strong style={{ color: 'var(--text-secondary)' }}>Solicitante:</strong>
+                              <div style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{formData.Nombre_Completo}</div>
+                            </div>
+                            <div>
+                              <strong style={{ color: 'var(--text-secondary)' }}>RUT:</strong>
+                              <div style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{formData.Rut_}</div>
+                            </div>
+                            <div>
+                              <strong style={{ color: 'var(--text-secondary)' }}>Empresa / Faena:</strong>
+                              <div style={{ color: 'var(--text-primary)' }}>{selectedCompanyWorkplace?.companyName} - {selectedCompanyWorkplace?.workplaceName}</div>
+                            </div>
+                            <div>
+                              <strong style={{ color: 'var(--text-secondary)' }}>Cargo:</strong>
+                              <div style={{ color: 'var(--text-primary)' }}>{formData.Cargo}</div>
+                            </div>
+                            <div>
+                              <strong style={{ color: 'var(--text-secondary)' }}>HSEC Asignado:</strong>
+                              <div style={{ color: 'var(--text-primary)' }}>{selectedHsecA?.name}</div>
+                            </div>
+                            <div style={{ marginTop: '0.5rem', padding: '0.5rem', background: '#ecfdf5', borderRadius: '6px', color: '#065f46', fontSize: '0.8rem' }}>
+                              ✓ Registro guardado en Supabase (Disponible en Historial de Registros)
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { apiFetch } from '../utils/api';
+import { getSolicitudesRecords } from '../services/dataService';
 
 export interface SolicitudRegistro {
   id?: string;
@@ -26,7 +26,7 @@ export const RegistrosPanel: React.FC<RegistrosPanelProps> = ({
   const [registros, setRegistros] = useState<SolicitudRegistro[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [source, setSource] = useState<'supabase' | 'local'>('local');
+  const [source, setSource] = useState<'supabase' | 'local'>('supabase');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRegistro, setSelectedRegistro] = useState<SolicitudRegistro | null>(null);
 
@@ -38,17 +38,16 @@ export const RegistrosPanel: React.FC<RegistrosPanelProps> = ({
     setLoading(true);
     setError(null);
     try {
-      const res = await apiFetch('/api/registros');
-      const data = await res.json();
-      if (data.success) {
-        setRegistros(data.registros || []);
-        setSource(data.source || 'local');
+      const res = await getSolicitudesRecords();
+      if (res.success) {
+        setRegistros(res.data);
+        setSource(res.source);
       } else {
-        setError(data.error || 'No se pudieron cargar los registros.');
+        setError('No se pudieron cargar los registros de Supabase.');
       }
     } catch (err: any) {
       console.error(err);
-      setError('Error al conectar con el servidor.');
+      setError('Error al conectar con Supabase.');
     } finally {
       setLoading(false);
     }
