@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { apiFetch } from '../utils/api';
 
 interface AdminAuthModalProps {
   isOpen: boolean;
@@ -31,15 +32,11 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
     setError(null);
 
     try {
-      const res = await fetch('/api/admin/verify', {
+      const res = await apiFetch('/api/admin/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password })
-      }).catch(() => fetch('http://localhost:3001/api/admin/verify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password })
-      }));
+      });
       const data = await res.json();
 
       if (data.success) {

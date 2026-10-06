@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { formatRut, validateRut } from '../utils/validation';
+import { apiFetch, apiUrl } from '../utils/api';
 import comunasChileData from '../data/comunasChile.json';
 import defaultConfig from '../data/defaultConfig.json';
 
@@ -150,7 +151,7 @@ export default function ConfigPanel({ onConfigChange, adminPassword, onLogoutAdm
 
   const loadConfig = async () => {
     try {
-      const response = await fetch('/api/config').catch(() => fetch('http://localhost:3001/api/config'));
+      const response = await apiFetch('/api/config');
       const data = await response.json();
       if (data.success) {
         setConfig(data.config);
@@ -162,7 +163,7 @@ export default function ConfigPanel({ onConfigChange, adminPassword, onLogoutAdm
 
   const loadComunas = async () => {
     try {
-      const response = await fetch('/api/comunas').catch(() => fetch('http://localhost:3001/api/comunas'));
+      const response = await apiFetch('/api/comunas');
       const data = await response.json();
       if (data.success && Array.isArray(data.comunas) && data.comunas.length > 0) {
         setComunas(data.comunas);
@@ -179,21 +180,14 @@ export default function ConfigPanel({ onConfigChange, adminPassword, onLogoutAdm
 
   const saveConfig = async (updatedConfig: AppConfig) => {
     try {
-      const response = await fetch('/api/config', {
+      const response = await apiFetch('/api/config', {
         method: 'PUT',
         headers: { 
           'Content-Type': 'application/json',
           ...(adminPassword ? { 'x-admin-password': adminPassword } : {})
         },
         body: JSON.stringify(updatedConfig)
-      }).catch(() => fetch('http://localhost:3001/api/config', {
-        method: 'PUT',
-        headers: { 
-          'Content-Type': 'application/json',
-          ...(adminPassword ? { 'x-admin-password': adminPassword } : {})
-        },
-        body: JSON.stringify(updatedConfig)
-      }));
+      });
       const data = await response.json();
       if (data.success) {
         setConfig(updatedConfig);
@@ -228,19 +222,13 @@ export default function ConfigPanel({ onConfigChange, adminPassword, onLogoutAdm
     formData.append('template', selectedFile);
 
     try {
-      const response = await fetch(`/api/config/templates/${docId}`, {
+      const response = await apiFetch(`/api/config/templates/${docId}`, {
         method: 'POST',
         headers: {
           ...(adminPassword ? { 'x-admin-password': adminPassword } : {})
         },
         body: formData
-      }).catch(() => fetch(`http://localhost:3001/api/config/templates/${docId}`, {
-        method: 'POST',
-        headers: {
-          ...(adminPassword ? { 'x-admin-password': adminPassword } : {})
-        },
-        body: formData
-      }));
+      });
       const data = await response.json();
       if (data.success) {
         setUploadResult({
@@ -620,7 +608,7 @@ export default function ConfigPanel({ onConfigChange, adminPassword, onLogoutAdm
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem', lineHeight: '1.6' }}>
                   El sistema utiliza una plantilla de Word maestra (
                   <a 
-                    href="http://localhost:3001/api/config/template/download" 
+                    href={apiUrl('/api/config/template/download')} 
                     download="Documentos_Plantilla.docm"
                     title="Descargar plantilla maestra actual con sus MERGEFIELD"
                     style={{ 

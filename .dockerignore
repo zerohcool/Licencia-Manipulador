@@ -1,0 +1,11 @@
+node_modules
+*/node_modules
+dist
+*/dist
+.git
+.env
+*/.env
+backend/temp/*
+!backend/temp/.gitkeep
+backend/data/solicitudes_registros.json
+.DS_Store

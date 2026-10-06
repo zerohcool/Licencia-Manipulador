@@ -4,6 +4,7 @@ import ConfigPanel from './components/ConfigPanel';
 import { DatePicker } from './components/DatePicker';
 import { AdminAuthModal } from './components/AdminAuthModal';
 import { RegistrosPanel } from './components/RegistrosPanel';
+import { apiUrl, apiFetch } from './utils/api';
 import comunasChileData from './data/comunasChile.json';
 import defaultConfig from './data/defaultConfig.json';
 
@@ -160,7 +161,7 @@ export default function App() {
 
   const loadConfig = async () => {
     try {
-      const response = await fetch('/api/config').catch(() => fetch('http://localhost:3001/api/config'));
+      const response = await apiFetch('/api/config');
       const data = await response.json();
       if (data.success && data.config) {
         setConfig(data.config);
@@ -178,7 +179,7 @@ export default function App() {
 
   const loadComunas = async () => {
     try {
-      const response = await fetch('/api/comunas').catch(() => fetch('http://localhost:3001/api/comunas'));
+      const response = await apiFetch('/api/comunas');
       const data = await response.json();
       if (data.success && Array.isArray(data.comunas) && data.comunas.length > 0) {
         setComunas(data.comunas);
@@ -388,15 +389,11 @@ export default function App() {
         setLoadingMessage('Convirtiendo a PDF con LibreOffice Headless (esto puede tardar unos segundos)...');
       }, 2000);
 
-      const response = await fetch('/api/generate', {
+      const response = await apiFetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
-      }).catch(() => fetch('http://localhost:3001/api/generate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      }));
+      });
 
       const result = await response.json();
 
@@ -959,7 +956,7 @@ export default function App() {
                           
                           <div className="download-options">
                             <a 
-                              href={`http://localhost:3001/api/download/${fileId}/pdf`}
+                              href={apiUrl(`/api/download/${fileId}/pdf`)}
                               className="btn btn-download btn-download-pdf"
                             >
                               <div style={{ fontWeight: 600 }}>Descargar Solicitud (PDF)</div>
@@ -967,7 +964,7 @@ export default function App() {
                             </a>
 
                             <a 
-                              href={`http://localhost:3001/api/download/${fileId}/docx`}
+                              href={apiUrl(`/api/download/${fileId}/docx`)}
                               className="btn btn-download btn-download-word"
                             >
                               <div style={{ fontWeight: 600 }}>Descargar Plantilla Word (.{generatedExt})</div>
@@ -990,7 +987,7 @@ export default function App() {
                             <span style={{ background: 'white', padding: '0.1rem 0.4rem', borderRadius: '4px', fontSize: '0.75rem' }}>Nativo</span>
                           </div>
                           <iframe 
-                            src={`http://localhost:3001/temp/solicitud-${fileId}.pdf`}
+                            src={apiUrl(`/temp/solicitud-${fileId}.pdf`)}
                             className="pdf-iframe"
                             title="Visor PDF de la Solicitud"
                           />

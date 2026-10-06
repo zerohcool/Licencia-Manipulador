@@ -475,10 +475,23 @@ app.get('/api/download/:id/:format', (req, res) => {
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'OK',
-    libreofficeInstalled: fs.existsSync('/Applications/LibreOffice.app/Contents/MacOS/soffice'),
-    comunasLoaded: comunasService.getComunas().length > 0
+    comunasLoaded: comunasService.getComunas().length > 0,
+    timestamp: new Date().toISOString()
   });
 });
+
+// Servir frontend compilado en producción / Docker si existe
+const FRONTEND_DIST = path.resolve(__dirname, '../../frontend/dist');
+if (fs.existsSync(FRONTEND_DIST)) {
+  console.log(`[Server] Sirviendo frontend de producción desde: ${FRONTEND_DIST}`);
+  app.use(express.static(FRONTEND_DIST));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api') || req.path.startsWith('/temp')) {
+      return next();
+    }
+    res.sendFile(path.join(FRONTEND_DIST, 'index.html'));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Servidor Express corriendo en http://localhost:${PORT}`);

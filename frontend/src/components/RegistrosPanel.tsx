@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { apiFetch } from '../utils/api';
 
 export interface SolicitudRegistro {
   id?: string;
@@ -37,7 +38,7 @@ export const RegistrosPanel: React.FC<RegistrosPanelProps> = ({
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/registros').catch(() => fetch('http://localhost:3001/api/registros'));
+      const res = await apiFetch('/api/registros');
       const data = await res.json();
       if (data.success) {
         setRegistros(data.registros || []);

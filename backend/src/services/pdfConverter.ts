@@ -2,8 +2,29 @@ import { exec } from 'child_process';
 import path from 'path';
 import fs from 'fs';
 
-// Ruta por defecto para el binario de LibreOffice en macOS
-const LIBREOFFICE_PATH = '/Applications/LibreOffice.app/Contents/MacOS/soffice';
+function findLibreOffice(): string {
+  if (process.env.LIBREOFFICE_PATH && fs.existsSync(process.env.LIBREOFFICE_PATH)) {
+    return process.env.LIBREOFFICE_PATH;
+  }
+
+  const candidates = [
+    '/Applications/LibreOffice.app/Contents/MacOS/soffice',
+    '/Applications/LibreOffice.app/Contents/MacOS/libreoffice',
+    '/usr/bin/soffice',
+    '/usr/bin/libreoffice',
+    '/usr/local/bin/soffice',
+    '/usr/local/bin/libreoffice'
+  ];
+
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate)) {
+      return candidate;
+    }
+  }
+
+  // Fallback to command name in PATH
+  return 'soffice';
+}
 
 /**
  * Convierte un archivo de Word (.docx / .docm) a PDF usando LibreOffice Headless.
@@ -13,14 +34,8 @@ const LIBREOFFICE_PATH = '/Applications/LibreOffice.app/Contents/MacOS/soffice';
  */
 export function convertToPdf(inputPath: string, outputDir: string): Promise<string> {
   return new Promise((resolve, reject) => {
-    // Verificar si LibreOffice está instalado
-    if (!fs.existsSync(LIBREOFFICE_PATH)) {
-      return reject(
-        new Error(
-          `LibreOffice no fue encontrado en la ruta: ${LIBREOFFICE_PATH}. Por favor, asegúrese de que esté instalado.`
-        )
-      );
-    }
+    const libreOfficeBin = findLibreOffice();
+
 
     const fileBasename = path.basename(inputPath, path.extname(inputPath));
     
@@ -44,7 +59,7 @@ export function convertToPdf(inputPath: string, outputDir: string): Promise<stri
     const escapedOutputDir = `"${outputDir.replace(/"/g, '\\"')}"`;
 
     // Comando incluyendo el perfil de usuario temporal aislado
-    const cmd = `${LIBREOFFICE_PATH} "-env:UserInstallation=${profileUrl}" --headless --convert-to pdf --outdir ${escapedOutputDir} ${escapedInputPath}`;
+    const cmd = `"${libreOfficeBin}" "-env:UserInstallation=${profileUrl}" --headless --convert-to pdf --outdir ${escapedOutputDir} ${escapedInputPath}`;
 
     // Ejecutar el proceso con un timeout de 20 segundos
     exec(cmd, { timeout: 20000 }, (error, stdout, stderr) => {
