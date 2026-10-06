@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { formatRut, validateRut } from '../utils/validation';
+import comunasChileData from '../data/comunasChile.json';
+import defaultConfig from '../data/defaultConfig.json';
 
 interface DocumentConfig {
   tituloCartola: string;
@@ -110,8 +112,8 @@ interface ConfigPanelProps {
 }
 
 export default function ConfigPanel({ onConfigChange, adminPassword, onLogoutAdmin }: ConfigPanelProps) {
-  const [config, setConfig] = useState<AppConfig | null>(null);
-  const [comunas, setComunas] = useState<ComunaInfo[]>([]);
+  const [config, setConfig] = useState<AppConfig | null>(defaultConfig as unknown as AppConfig);
+  const [comunas, setComunas] = useState<ComunaInfo[]>(comunasChileData as ComunaInfo[]);
   const [activeTab, setActiveTab] = useState<'docs' | 'companyWorkplaces' | 'hsec' | 'variables'>('docs');
   
   // Estados de edición
@@ -148,25 +150,25 @@ export default function ConfigPanel({ onConfigChange, adminPassword, onLogoutAdm
 
   const loadConfig = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/config');
+      const response = await fetch('/api/config').catch(() => fetch('http://localhost:3001/api/config'));
       const data = await response.json();
       if (data.success) {
         setConfig(data.config);
       }
-    } catch (err) {
-      showMsg('Error al conectar con el servidor para cargar configuración.', 'error');
+    } catch {
+      // Mantiene la configuración por defecto
     }
   };
 
   const loadComunas = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/comunas');
+      const response = await fetch('/api/comunas').catch(() => fetch('http://localhost:3001/api/comunas'));
       const data = await response.json();
-      if (data.success) {
+      if (data.success && Array.isArray(data.comunas) && data.comunas.length > 0) {
         setComunas(data.comunas);
       }
-    } catch (err) {
-      console.error('Error cargando comunas:', err);
+    } catch {
+      // Mantiene las 346 comunas de respaldo
     }
   };
 
@@ -177,14 +179,21 @@ export default function ConfigPanel({ onConfigChange, adminPassword, onLogoutAdm
 
   const saveConfig = async (updatedConfig: AppConfig) => {
     try {
-      const response = await fetch('http://localhost:3001/api/config', {
+      const response = await fetch('/api/config', {
         method: 'PUT',
         headers: { 
           'Content-Type': 'application/json',
           ...(adminPassword ? { 'x-admin-password': adminPassword } : {})
         },
         body: JSON.stringify(updatedConfig)
-      });
+      }).catch(() => fetch('http://localhost:3001/api/config', {
+        method: 'PUT',
+        headers: { 
+          'Content-Type': 'application/json',
+          ...(adminPassword ? { 'x-admin-password': adminPassword } : {})
+        },
+        body: JSON.stringify(updatedConfig)
+      }));
       const data = await response.json();
       if (data.success) {
         setConfig(updatedConfig);
@@ -193,7 +202,7 @@ export default function ConfigPanel({ onConfigChange, adminPassword, onLogoutAdm
       } else {
         showMsg(data.error || 'Error al guardar configuración.', 'error');
       }
-    } catch (err) {
+    } catch {
       showMsg('Error de conexión al guardar configuración.', 'error');
     }
   };
@@ -219,13 +228,19 @@ export default function ConfigPanel({ onConfigChange, adminPassword, onLogoutAdm
     formData.append('template', selectedFile);
 
     try {
-      const response = await fetch(`http://localhost:3001/api/config/templates/${docId}`, {
+      const response = await fetch(`/api/config/templates/${docId}`, {
         method: 'POST',
         headers: {
           ...(adminPassword ? { 'x-admin-password': adminPassword } : {})
         },
         body: formData
-      });
+      }).catch(() => fetch(`http://localhost:3001/api/config/templates/${docId}`, {
+        method: 'POST',
+        headers: {
+          ...(adminPassword ? { 'x-admin-password': adminPassword } : {})
+        },
+        body: formData
+      }));
       const data = await response.json();
       if (data.success) {
         setUploadResult({

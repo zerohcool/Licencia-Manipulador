@@ -1,0 +1,2078 @@
+[
+  {
+    "comuna": "ALGARROBO",
+    "provincia": "SAN ANTONIO",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "ALHUÉ",
+    "provincia": "MELIPILLA",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "ALTO BIOBÍO",
+    "provincia": "BIOBÍO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "ALTO DEL CARMEN",
+    "provincia": "HUASCO",
+    "region": "ATACAMA",
+    "numeroRegion": "III"
+  },
+  {
+    "comuna": "ALTO HOSPICIO",
+    "provincia": "IQUIQUE",
+    "region": "TARAPACÁ",
+    "numeroRegion": "I"
+  },
+  {
+    "comuna": "ANCUD",
+    "provincia": "CHILOÉ",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "ANDACOLLO",
+    "provincia": "ELQUI",
+    "region": "COQUIMBO",
+    "numeroRegion": "IV"
+  },
+  {
+    "comuna": "ANGOL",
+    "provincia": "MALLECO",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "ANTÁRTICA",
+    "provincia": "ANTÁRTICA CHILENA",
+    "region": "MAGALLANES Y LA ANTÁRTICA CHILENA",
+    "numeroRegion": "XII"
+  },
+  {
+    "comuna": "ANTOFAGASTA",
+    "provincia": "ANTOFAGASTA",
+    "region": "ANTOFAGASTA",
+    "numeroRegion": "II"
+  },
+  {
+    "comuna": "ANTUCO",
+    "provincia": "BIOBÍO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "ARAUCO",
+    "provincia": "ARAUCO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "ARICA",
+    "provincia": "ARICA",
+    "region": "ARICA Y PARINACOTA",
+    "numeroRegion": "XV"
+  },
+  {
+    "comuna": "AYSÉN",
+    "provincia": "AYSÉN",
+    "region": "AYSÉN",
+    "numeroRegion": "XI"
+  },
+  {
+    "comuna": "BUIN",
+    "provincia": "MAIPO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "BULNES",
+    "provincia": "DIGUILLÍN",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "CABILDO",
+    "provincia": "PETORCA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "CABO DE HORNOS",
+    "provincia": "ANTÁRTICA CHILENA",
+    "region": "MAGALLANES Y LA ANTÁRTICA CHILENA",
+    "numeroRegion": "XII"
+  },
+  {
+    "comuna": "CABRERO",
+    "provincia": "BIOBÍO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "CALAMA",
+    "provincia": "EL LOA",
+    "region": "ANTOFAGASTA",
+    "numeroRegion": "II"
+  },
+  {
+    "comuna": "CALBUCO",
+    "provincia": "LLANQUIHUE",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "CALDERA",
+    "provincia": "COPIAPÓ",
+    "region": "ATACAMA",
+    "numeroRegion": "III"
+  },
+  {
+    "comuna": "CALERA",
+    "provincia": "QUILLOTA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "CALERA DE TANGO",
+    "provincia": "MAIPO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "CALLE LARGA",
+    "provincia": "LOS ANDES",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "CAMARONES",
+    "provincia": "ARICA",
+    "region": "ARICA Y PARINACOTA",
+    "numeroRegion": "XV"
+  },
+  {
+    "comuna": "CAMIÑA",
+    "provincia": "TAMARUGAL",
+    "region": "TARAPACÁ",
+    "numeroRegion": "I"
+  },
+  {
+    "comuna": "CANELA",
+    "provincia": "CHOAPA",
+    "region": "COQUIMBO",
+    "numeroRegion": "IV"
+  },
+  {
+    "comuna": "CAÑETE",
+    "provincia": "ARAUCO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "CARAHUE",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "CARTAGENA",
+    "provincia": "SAN ANTONIO",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "CASABLANCA",
+    "provincia": "VALPARAÍSO",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "CASTRO",
+    "provincia": "CHILOÉ",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "CATEMU",
+    "provincia": "SAN FELIPE DE ACONCAGUA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "CAUQUENES",
+    "provincia": "CAUQUENES",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "CERRILLOS",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "CERRO NAVIA",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "CHAITÉN",
+    "provincia": "PALENA",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "CHAÑARAL",
+    "provincia": "CHAÑARAL",
+    "region": "ATACAMA",
+    "numeroRegion": "III"
+  },
+  {
+    "comuna": "CHANCO",
+    "provincia": "CAUQUENES",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "CHÉPICA",
+    "provincia": "COLCHAGUA",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "CHIGUAYANTE",
+    "provincia": "CONCEPCIÓN",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "CHILE CHICO",
+    "provincia": "GENERAL CARRERA",
+    "region": "AYSÉN",
+    "numeroRegion": "XI"
+  },
+  {
+    "comuna": "CHILLÁN",
+    "provincia": "DIGUILLÍN",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "CHILLÁN VIEJO",
+    "provincia": "DIGUILLÍN",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "CHIMBARONGO",
+    "provincia": "COLCHAGUA",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "CHOLCHOL",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "CHONCHI",
+    "provincia": "CHILOÉ",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "CISNES",
+    "provincia": "AYSÉN",
+    "region": "AYSÉN",
+    "numeroRegion": "XI"
+  },
+  {
+    "comuna": "COBQUECURA",
+    "provincia": "ITATA",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "COCHAMÓ",
+    "provincia": "LLANQUIHUE",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "COCHRANE",
+    "provincia": "CAPITÁN PRAT",
+    "region": "AYSÉN",
+    "numeroRegion": "XI"
+  },
+  {
+    "comuna": "CODEGUA",
+    "provincia": "CACHAPOAL",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "COELEMU",
+    "provincia": "ITATA",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "COIHUECO",
+    "provincia": "PUNILLA",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "COINCO",
+    "provincia": "CACHAPOAL",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "COLBÚN",
+    "provincia": "LINARES",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "COLCHANE",
+    "provincia": "TAMARUGAL",
+    "region": "TARAPACÁ",
+    "numeroRegion": "I"
+  },
+  {
+    "comuna": "COLINA",
+    "provincia": "CHACABUCO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "COLLIPULLI",
+    "provincia": "MALLECO",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "COLTAUCO",
+    "provincia": "CACHAPOAL",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "COMBARBALÁ",
+    "provincia": "LIMARÍ",
+    "region": "COQUIMBO",
+    "numeroRegion": "IV"
+  },
+  {
+    "comuna": "CONCEPCIÓN",
+    "provincia": "CONCEPCIÓN",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "CONCHALÍ",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "CONCÓN",
+    "provincia": "VALPARAÍSO",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "CONSTITUCIÓN",
+    "provincia": "TALCA",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "CONTULMO",
+    "provincia": "ARAUCO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "COPIAPÓ",
+    "provincia": "COPIAPÓ",
+    "region": "ATACAMA",
+    "numeroRegion": "III"
+  },
+  {
+    "comuna": "COQUIMBO",
+    "provincia": "ELQUI",
+    "region": "COQUIMBO",
+    "numeroRegion": "IV"
+  },
+  {
+    "comuna": "CORONEL",
+    "provincia": "CONCEPCIÓN",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "CORRAL",
+    "provincia": "VALDIVIA",
+    "region": "LOS RÍOS",
+    "numeroRegion": "XIV"
+  },
+  {
+    "comuna": "COYHAIQUE",
+    "provincia": "COYHAIQUE",
+    "region": "AYSÉN",
+    "numeroRegion": "XI"
+  },
+  {
+    "comuna": "CUNCO",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "CURACAUTÍN",
+    "provincia": "MALLECO",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "CURACAVÍ",
+    "provincia": "MELIPILLA",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "CURACO DE VÉLEZ",
+    "provincia": "CHILOÉ",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "CURANILAHUE",
+    "provincia": "ARAUCO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "CURARREHUE",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "CUREPTO",
+    "provincia": "TALCA",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "CURICÓ",
+    "provincia": "CURICÓ",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "DALCAHUE",
+    "provincia": "CHILOÉ",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "DIEGO DE ALMAGRO",
+    "provincia": "CHAÑARAL",
+    "region": "ATACAMA",
+    "numeroRegion": "III"
+  },
+  {
+    "comuna": "DOÑIHUE",
+    "provincia": "CACHAPOAL",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "EL BOSQUE",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "EL CARMEN",
+    "provincia": "DIGUILLÍN",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "EL MONTE",
+    "provincia": "TALAGANTE",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "EL QUISCO",
+    "provincia": "SAN ANTONIO",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "EL TABO",
+    "provincia": "SAN ANTONIO",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "EMPEDRADO",
+    "provincia": "TALCA",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "ERCILLA",
+    "provincia": "MALLECO",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "ESTACIÓN CENTRAL",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "FLORIDA",
+    "provincia": "CONCEPCIÓN",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "FREIRE",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "FREIRINA",
+    "provincia": "HUASCO",
+    "region": "ATACAMA",
+    "numeroRegion": "III"
+  },
+  {
+    "comuna": "FRESIA",
+    "provincia": "LLANQUIHUE",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "FRUTILLAR",
+    "provincia": "LLANQUIHUE",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "FUTALEUFÚ",
+    "provincia": "PALENA",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "FUTRONO",
+    "provincia": "RANCO",
+    "region": "LOS RÍOS",
+    "numeroRegion": "XIV"
+  },
+  {
+    "comuna": "GALVARINO",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "GENERAL LAGOS",
+    "provincia": "PARINACOTA",
+    "region": "ARICA Y PARINACOTA",
+    "numeroRegion": "XV"
+  },
+  {
+    "comuna": "GORBEA",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "GRANEROS",
+    "provincia": "CACHAPOAL",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "GUAITECAS",
+    "provincia": "AYSÉN",
+    "region": "AYSÉN",
+    "numeroRegion": "XI"
+  },
+  {
+    "comuna": "HIJUELAS",
+    "provincia": "QUILLOTA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "HUALAIHUÉ",
+    "provincia": "PALENA",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "HUALAÑÉ",
+    "provincia": "CURICÓ",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "HUALPÉN",
+    "provincia": "CONCEPCIÓN",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "HUALQUI",
+    "provincia": "CONCEPCIÓN",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "HUARA",
+    "provincia": "TAMARUGAL",
+    "region": "TARAPACÁ",
+    "numeroRegion": "I"
+  },
+  {
+    "comuna": "HUASCO",
+    "provincia": "HUASCO",
+    "region": "ATACAMA",
+    "numeroRegion": "III"
+  },
+  {
+    "comuna": "HUECHURABA",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "ILLAPEL",
+    "provincia": "CHOAPA",
+    "region": "COQUIMBO",
+    "numeroRegion": "IV"
+  },
+  {
+    "comuna": "INDEPENDENCIA",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "IQUIQUE",
+    "provincia": "IQUIQUE",
+    "region": "TARAPACÁ",
+    "numeroRegion": "I"
+  },
+  {
+    "comuna": "ISLA DE MAIPO",
+    "provincia": "TALAGANTE",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "ISLA DE PASCUA",
+    "provincia": "ISLA DE PASCUA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "JUAN FERNÁNDEZ",
+    "provincia": "VALPARAÍSO",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "LA CISTERNA",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "LA CRUZ",
+    "provincia": "QUILLOTA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "LA ESTRELLA",
+    "provincia": "CARDENAL CARO",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "LA FLORIDA",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "LA GRANJA",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "LA HIGUERA",
+    "provincia": "ELQUI",
+    "region": "COQUIMBO",
+    "numeroRegion": "IV"
+  },
+  {
+    "comuna": "LA LIGUA",
+    "provincia": "PETORCA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "LA PINTANA",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "LA REINA",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "LA SERENA",
+    "provincia": "ELQUI",
+    "region": "COQUIMBO",
+    "numeroRegion": "IV"
+  },
+  {
+    "comuna": "LA UNIÓN",
+    "provincia": "RANCO",
+    "region": "LOS RÍOS",
+    "numeroRegion": "XIV"
+  },
+  {
+    "comuna": "LAGO RANCO",
+    "provincia": "RANCO",
+    "region": "LOS RÍOS",
+    "numeroRegion": "XIV"
+  },
+  {
+    "comuna": "LAGO VERDE",
+    "provincia": "COYHAIQUE",
+    "region": "AYSÉN",
+    "numeroRegion": "XI"
+  },
+  {
+    "comuna": "LAGUNA BLANCA",
+    "provincia": "MAGALLANES",
+    "region": "MAGALLANES Y LA ANTÁRTICA CHILENA",
+    "numeroRegion": "XII"
+  },
+  {
+    "comuna": "LAJA",
+    "provincia": "BIOBÍO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "LAMPA",
+    "provincia": "CHACABUCO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "LANCO",
+    "provincia": "VALDIVIA",
+    "region": "LOS RÍOS",
+    "numeroRegion": "XIV"
+  },
+  {
+    "comuna": "LAS CABRAS",
+    "provincia": "CACHAPOAL",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "LAS CONDES",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "LAUTARO",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "LEBU",
+    "provincia": "ARAUCO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "LICANTÉN",
+    "provincia": "CURICÓ",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "LIMACHE",
+    "provincia": "MARGA MARGA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "LINARES",
+    "provincia": "LINARES",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "LITUECHE",
+    "provincia": "CARDENAL CARO",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "LLAILLAY",
+    "provincia": "SAN FELIPE DE ACONCAGUA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "LLANQUIHUE",
+    "provincia": "LLANQUIHUE",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "LO BARNECHEA",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "LO ESPEJO",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "LO PRADO",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "LOLOL",
+    "provincia": "COLCHAGUA",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "LONCOCHE",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "LONGAVÍ",
+    "provincia": "LINARES",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "LONQUIMAY",
+    "provincia": "MALLECO",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "LOS ÁLAMOS",
+    "provincia": "ARAUCO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "LOS ANDES",
+    "provincia": "LOS ANDES",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "LOS ÁNGELES",
+    "provincia": "BIOBÍO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "LOS LAGOS",
+    "provincia": "VALDIVIA",
+    "region": "LOS RÍOS",
+    "numeroRegion": "XIV"
+  },
+  {
+    "comuna": "LOS MUERMOS",
+    "provincia": "LLANQUIHUE",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "LOS SAUCES",
+    "provincia": "MALLECO",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "LOS VILOS",
+    "provincia": "CHOAPA",
+    "region": "COQUIMBO",
+    "numeroRegion": "IV"
+  },
+  {
+    "comuna": "LOTA",
+    "provincia": "CONCEPCIÓN",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "LUMACO",
+    "provincia": "MALLECO",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "MACHALÍ",
+    "provincia": "CACHAPOAL",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "MACUL",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "MÁFIL",
+    "provincia": "VALDIVIA",
+    "region": "LOS RÍOS",
+    "numeroRegion": "XIV"
+  },
+  {
+    "comuna": "MAIPÚ",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "MALLOA",
+    "provincia": "CACHAPOAL",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "MARCHIHUE",
+    "provincia": "CARDENAL CARO",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "MARÍA ELENA",
+    "provincia": "TOCOPILLA",
+    "region": "ANTOFAGASTA",
+    "numeroRegion": "II"
+  },
+  {
+    "comuna": "MARÍA PINTO",
+    "provincia": "MELIPILLA",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "MARIQUINA",
+    "provincia": "VALDIVIA",
+    "region": "LOS RÍOS",
+    "numeroRegion": "XIV"
+  },
+  {
+    "comuna": "MAULE",
+    "provincia": "TALCA",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "MAULLÍN",
+    "provincia": "LLANQUIHUE",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "MEJILLONES",
+    "provincia": "ANTOFAGASTA",
+    "region": "ANTOFAGASTA",
+    "numeroRegion": "II"
+  },
+  {
+    "comuna": "MELIPEUCO",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "MELIPILLA",
+    "provincia": "MELIPILLA",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "MOLINA",
+    "provincia": "CURICÓ",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "MONTE PATRIA",
+    "provincia": "LIMARÍ",
+    "region": "COQUIMBO",
+    "numeroRegion": "IV"
+  },
+  {
+    "comuna": "MOSTAZAL",
+    "provincia": "CACHAPOAL",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "MULCHÉN",
+    "provincia": "BIOBÍO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "NACIMIENTO",
+    "provincia": "BIOBÍO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "NANCAGUA",
+    "provincia": "COLCHAGUA",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "NATALES",
+    "provincia": "ÚLTIMA ESPERANZA",
+    "region": "MAGALLANES Y LA ANTÁRTICA CHILENA",
+    "numeroRegion": "XII"
+  },
+  {
+    "comuna": "NAVIDAD",
+    "provincia": "CARDENAL CARO",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "NEGRETE",
+    "provincia": "BIOBÍO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "NINHUE",
+    "provincia": "ITATA",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "ÑIQUÉN",
+    "provincia": "PUNILLA",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "NOGALES",
+    "provincia": "QUILLOTA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "NUEVA IMPERIAL",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "ÑUÑOA",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "O'HIGGINS",
+    "provincia": "CAPITÁN PRAT",
+    "region": "AYSÉN",
+    "numeroRegion": "XI"
+  },
+  {
+    "comuna": "OLIVAR",
+    "provincia": "CACHAPOAL",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "OLLAGÜE",
+    "provincia": "EL LOA",
+    "region": "ANTOFAGASTA",
+    "numeroRegion": "II"
+  },
+  {
+    "comuna": "OLMUÉ",
+    "provincia": "MARGA MARGA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "OSORNO",
+    "provincia": "OSORNO",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "OVALLE",
+    "provincia": "LIMARÍ",
+    "region": "COQUIMBO",
+    "numeroRegion": "IV"
+  },
+  {
+    "comuna": "PADRE HURTADO",
+    "provincia": "TALAGANTE",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "PADRE LAS CASAS",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "PAIGUANO",
+    "provincia": "ELQUI",
+    "region": "COQUIMBO",
+    "numeroRegion": "IV"
+  },
+  {
+    "comuna": "PAILLACO",
+    "provincia": "VALDIVIA",
+    "region": "LOS RÍOS",
+    "numeroRegion": "XIV"
+  },
+  {
+    "comuna": "PAINE",
+    "provincia": "MAIPO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "PALENA",
+    "provincia": "PALENA",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "PALMILLA",
+    "provincia": "COLCHAGUA",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "PANGUIPULLI",
+    "provincia": "VALDIVIA",
+    "region": "LOS RÍOS",
+    "numeroRegion": "XIV"
+  },
+  {
+    "comuna": "PANQUEHUE",
+    "provincia": "SAN FELIPE DE ACONCAGUA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "PAPUDO",
+    "provincia": "PETORCA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "PAREDONES",
+    "provincia": "CARDENAL CARO",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "PARRAL",
+    "provincia": "LINARES",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "PEDRO AGUIRRE CERDA",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "PELARCO",
+    "provincia": "TALCA",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "PELLUHUE",
+    "provincia": "CAUQUENES",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "PEMUCO",
+    "provincia": "DIGUILLÍN",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "PEÑAFLOR",
+    "provincia": "TALAGANTE",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "PEÑALOLÉN",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "PENCAHUE",
+    "provincia": "TALCA",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "PENCO",
+    "provincia": "CONCEPCIÓN",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "PERALILLO",
+    "provincia": "COLCHAGUA",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "PERQUENCO",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "PETORCA",
+    "provincia": "PETORCA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "PEUMO",
+    "provincia": "CACHAPOAL",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "PICA",
+    "provincia": "TAMARUGAL",
+    "region": "TARAPACÁ",
+    "numeroRegion": "I"
+  },
+  {
+    "comuna": "PICHIDEGUA",
+    "provincia": "CACHAPOAL",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "PICHILEMU",
+    "provincia": "CARDENAL CARO",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "PINTO",
+    "provincia": "DIGUILLÍN",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "PIRQUE",
+    "provincia": "CORDILLERA",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "PITRUFQUÉN",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "PLACILLA",
+    "provincia": "COLCHAGUA",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "PORTEZUELO",
+    "provincia": "ITATA",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "PORVENIR",
+    "provincia": "TIERRA DEL FUEGO",
+    "region": "MAGALLANES Y LA ANTÁRTICA CHILENA",
+    "numeroRegion": "XII"
+  },
+  {
+    "comuna": "POZO ALMONTE",
+    "provincia": "TAMARUGAL",
+    "region": "TARAPACÁ",
+    "numeroRegion": "I"
+  },
+  {
+    "comuna": "PRIMAVERA",
+    "provincia": "TIERRA DEL FUEGO",
+    "region": "MAGALLANES Y LA ANTÁRTICA CHILENA",
+    "numeroRegion": "XII"
+  },
+  {
+    "comuna": "PROVIDENCIA",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "PUCHUNCAVÍ",
+    "provincia": "VALPARAÍSO",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "PUCÓN",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "PUDAHUEL",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "PUENTE ALTO",
+    "provincia": "CORDILLERA",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "PUERTO MONTT",
+    "provincia": "LLANQUIHUE",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "PUERTO OCTAY",
+    "provincia": "OSORNO",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "PUERTO VARAS",
+    "provincia": "LLANQUIHUE",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "PUMANQUE",
+    "provincia": "COLCHAGUA",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "PUNITAQUI",
+    "provincia": "LIMARÍ",
+    "region": "COQUIMBO",
+    "numeroRegion": "IV"
+  },
+  {
+    "comuna": "PUNTA ARENAS",
+    "provincia": "MAGALLANES",
+    "region": "MAGALLANES Y LA ANTÁRTICA CHILENA",
+    "numeroRegion": "XII"
+  },
+  {
+    "comuna": "PUQUELDÓN",
+    "provincia": "CHILOÉ",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "PURÉN",
+    "provincia": "MALLECO",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "PURRANQUE",
+    "provincia": "OSORNO",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "PUTAENDO",
+    "provincia": "SAN FELIPE DE ACONCAGUA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "PUTRE",
+    "provincia": "PARINACOTA",
+    "region": "ARICA Y PARINACOTA",
+    "numeroRegion": "XV"
+  },
+  {
+    "comuna": "PUYEHUE",
+    "provincia": "OSORNO",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "QUEILÉN",
+    "provincia": "CHILOÉ",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "QUELLÓN",
+    "provincia": "CHILOÉ",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "QUEMCHI",
+    "provincia": "CHILOÉ",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "QUILACO",
+    "provincia": "BIOBÍO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "QUILICURA",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "QUILLECO",
+    "provincia": "BIOBÍO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "QUILLÓN",
+    "provincia": "DIGUILLÍN",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "QUILLOTA",
+    "provincia": "QUILLOTA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "QUILPUÉ",
+    "provincia": "MARGA MARGA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "QUINCHAO",
+    "provincia": "CHILOÉ",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "QUINTA DE TILCOCO",
+    "provincia": "CACHAPOAL",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "QUINTA NORMAL",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "QUINTERO",
+    "provincia": "VALPARAÍSO",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "QUIRIHUE",
+    "provincia": "ITATA",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "RANCAGUA",
+    "provincia": "CACHAPOAL",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "RÁNQUIL",
+    "provincia": "ITATA",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "RAUCO",
+    "provincia": "CURICÓ",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "RECOLETA",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "RENAICO",
+    "provincia": "MALLECO",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "RENCA",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "RENGO",
+    "provincia": "CACHAPOAL",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "REQUÍNOA",
+    "provincia": "CACHAPOAL",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "RETIRO",
+    "provincia": "LINARES",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "RINCONADA",
+    "provincia": "LOS ANDES",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "RÍO BUENO",
+    "provincia": "RANCO",
+    "region": "LOS RÍOS",
+    "numeroRegion": "XIV"
+  },
+  {
+    "comuna": "RÍO CLARO",
+    "provincia": "TALCA",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "RÍO HURTADO",
+    "provincia": "LIMARÍ",
+    "region": "COQUIMBO",
+    "numeroRegion": "IV"
+  },
+  {
+    "comuna": "RÍO IBÁÑEZ",
+    "provincia": "GENERAL CARRERA",
+    "region": "AYSÉN",
+    "numeroRegion": "XI"
+  },
+  {
+    "comuna": "RÍO NEGRO",
+    "provincia": "OSORNO",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "RÍO VERDE",
+    "provincia": "MAGALLANES",
+    "region": "MAGALLANES Y LA ANTÁRTICA CHILENA",
+    "numeroRegion": "XII"
+  },
+  {
+    "comuna": "ROMERAL",
+    "provincia": "CURICÓ",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "SAAVEDRA",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "SAGRADA FAMILIA",
+    "provincia": "CURICÓ",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "SALAMANCA",
+    "provincia": "CHOAPA",
+    "region": "COQUIMBO",
+    "numeroRegion": "IV"
+  },
+  {
+    "comuna": "SAN ANTONIO",
+    "provincia": "SAN ANTONIO",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "SAN BERNARDO",
+    "provincia": "MAIPO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "SAN CARLOS",
+    "provincia": "PUNILLA",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "SAN CLEMENTE",
+    "provincia": "TALCA",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "SAN ESTEBAN",
+    "provincia": "LOS ANDES",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "SAN FABIÁN",
+    "provincia": "PUNILLA",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "SAN FELIPE",
+    "provincia": "SAN FELIPE DE ACONCAGUA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "SAN FERNANDO",
+    "provincia": "COLCHAGUA",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "SAN GREGORIO",
+    "provincia": "MAGALLANES",
+    "region": "MAGALLANES Y LA ANTÁRTICA CHILENA",
+    "numeroRegion": "XII"
+  },
+  {
+    "comuna": "SAN IGNACIO",
+    "provincia": "DIGUILLÍN",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "SAN JAVIER",
+    "provincia": "LINARES",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "SAN JOAQUÍN",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "SAN JOSÉ DE MAIPO",
+    "provincia": "CORDILLERA",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "SAN JUAN DE LA COSTA",
+    "provincia": "OSORNO",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "SAN MIGUEL",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "SAN NICOLÁS",
+    "provincia": "PUNILLA",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "SAN PABLO",
+    "provincia": "OSORNO",
+    "region": "LOS LAGOS",
+    "numeroRegion": "X"
+  },
+  {
+    "comuna": "SAN PEDRO",
+    "provincia": "MELIPILLA",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "SAN PEDRO DE ATACAMA",
+    "provincia": "EL LOA",
+    "region": "ANTOFAGASTA",
+    "numeroRegion": "II"
+  },
+  {
+    "comuna": "SAN PEDRO DE LA PAZ",
+    "provincia": "CONCEPCIÓN",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "SAN RAFAEL",
+    "provincia": "TALCA",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "SAN RAMÓN",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "SAN ROSENDO",
+    "provincia": "BIOBÍO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "SAN VICENTE",
+    "provincia": "CACHAPOAL",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "SANTA BÁRBARA",
+    "provincia": "BIOBÍO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "SANTA CRUZ",
+    "provincia": "COLCHAGUA",
+    "region": "O'HIGGINS",
+    "numeroRegion": "VI"
+  },
+  {
+    "comuna": "SANTA JUANA",
+    "provincia": "CONCEPCIÓN",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "SANTA MARÍA",
+    "provincia": "SAN FELIPE DE ACONCAGUA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "SANTIAGO",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "SANTO DOMINGO",
+    "provincia": "SAN ANTONIO",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "SIERRA GORDA",
+    "provincia": "ANTOFAGASTA",
+    "region": "ANTOFAGASTA",
+    "numeroRegion": "II"
+  },
+  {
+    "comuna": "TALAGANTE",
+    "provincia": "TALAGANTE",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "TALCA",
+    "provincia": "TALCA",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "TALCAHUANO",
+    "provincia": "CONCEPCIÓN",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "TALTAL",
+    "provincia": "ANTOFAGASTA",
+    "region": "ANTOFAGASTA",
+    "numeroRegion": "II"
+  },
+  {
+    "comuna": "TEMUCO",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "TENO",
+    "provincia": "CURICÓ",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "TEODORO SCHMIDT",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "TIERRA AMARILLA",
+    "provincia": "COPIAPÓ",
+    "region": "ATACAMA",
+    "numeroRegion": "III"
+  },
+  {
+    "comuna": "TILTIL",
+    "provincia": "CHACABUCO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "TIMAUKEL",
+    "provincia": "TIERRA DEL FUEGO",
+    "region": "MAGALLANES Y LA ANTÁRTICA CHILENA",
+    "numeroRegion": "XII"
+  },
+  {
+    "comuna": "TIRÚA",
+    "provincia": "ARAUCO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "TOCOPILLA",
+    "provincia": "TOCOPILLA",
+    "region": "ANTOFAGASTA",
+    "numeroRegion": "II"
+  },
+  {
+    "comuna": "TOLTÉN",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "TOMÉ",
+    "provincia": "CONCEPCIÓN",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "TORRES DEL PAINE",
+    "provincia": "ÚLTIMA ESPERANZA",
+    "region": "MAGALLANES Y LA ANTÁRTICA CHILENA",
+    "numeroRegion": "XII"
+  },
+  {
+    "comuna": "TORTEL",
+    "provincia": "CAPITÁN PRAT",
+    "region": "AYSÉN",
+    "numeroRegion": "XI"
+  },
+  {
+    "comuna": "TRAIGUÉN",
+    "provincia": "MALLECO",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "TREGUACO",
+    "provincia": "ITATA",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "TUCAPEL",
+    "provincia": "BIOBÍO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "VALDIVIA",
+    "provincia": "VALDIVIA",
+    "region": "LOS RÍOS",
+    "numeroRegion": "XIV"
+  },
+  {
+    "comuna": "VALLENAR",
+    "provincia": "HUASCO",
+    "region": "ATACAMA",
+    "numeroRegion": "III"
+  },
+  {
+    "comuna": "VALPARAÍSO",
+    "provincia": "VALPARAÍSO",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "VICHUQUÉN",
+    "provincia": "CURICÓ",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "VICTORIA",
+    "provincia": "MALLECO",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "VICUÑA",
+    "provincia": "ELQUI",
+    "region": "COQUIMBO",
+    "numeroRegion": "IV"
+  },
+  {
+    "comuna": "VILCÚN",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "VILLA ALEGRE",
+    "provincia": "LINARES",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "VILLA ALEMANA",
+    "provincia": "MARGA MARGA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "VILLARRICA",
+    "provincia": "CAUTÍN",
+    "region": "LA ARAUCANÍA",
+    "numeroRegion": "IX"
+  },
+  {
+    "comuna": "VIÑA DEL MAR",
+    "provincia": "VALPARAÍSO",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  },
+  {
+    "comuna": "VITACURA",
+    "provincia": "SANTIAGO",
+    "region": "METROPOLITANA DE SANTIAGO",
+    "numeroRegion": "RM"
+  },
+  {
+    "comuna": "YERBAS BUENAS",
+    "provincia": "LINARES",
+    "region": "MAULE",
+    "numeroRegion": "VII"
+  },
+  {
+    "comuna": "YUMBEL",
+    "provincia": "BIOBÍO",
+    "region": "BIOBÍO",
+    "numeroRegion": "VIII"
+  },
+  {
+    "comuna": "YUNGAY",
+    "provincia": "DIGUILLÍN",
+    "region": "ÑUBLE",
+    "numeroRegion": "XVI"
+  },
+  {
+    "comuna": "ZAPALLAR",
+    "provincia": "PETORCA",
+    "region": "VALPARAÍSO",
+    "numeroRegion": "V"
+  }
+]

@@ -4,6 +4,8 @@ import ConfigPanel from './components/ConfigPanel';
 import { DatePicker } from './components/DatePicker';
 import { AdminAuthModal } from './components/AdminAuthModal';
 import { RegistrosPanel } from './components/RegistrosPanel';
+import comunasChileData from './data/comunasChile.json';
+import defaultConfig from './data/defaultConfig.json';
 
 interface ComunaInfo {
   comuna: string;
@@ -92,8 +94,10 @@ interface FormData {
   Fecha_Actual: string;
 }
 
+const typedDefaultConfig = defaultConfig as unknown as AppConfig;
+
 const initialFormState: FormData = {
-  documentTypeId: '',
+  documentTypeId: typedDefaultConfig.documentTypes?.[0]?.id || '',
   Nombre_Completo: '',
   Rut_: '',
   SEXO: 'MASCULINO',
@@ -111,9 +115,9 @@ const initialFormState: FormData = {
   REGION: '',
   Fono_: '',
   
-  companyWorkplaceId: '',
+  companyWorkplaceId: typedDefaultConfig.companyWorkplaces?.[0]?.id || '',
   Cargo: '',
-  hsecAId: '',
+  hsecAId: typedDefaultConfig.hsecProfessionals?.[0]?.id || '',
   
   CampoAutoComb: '',
   Fecha_Actual: formatDateToDDMMYYYY(new Date()),
@@ -139,8 +143,8 @@ export default function App() {
   const [pendingView, setPendingView] = useState<'config' | 'registros' | null>(null);
   const [loadedAlert, setLoadedAlert] = useState<{ nombre: string; rut: string } | null>(null);
 
-  const [config, setConfig] = useState<AppConfig | null>(null);
-  const [comunas, setComunas] = useState<ComunaInfo[]>([]);
+  const [config, setConfig] = useState<AppConfig>(typedDefaultConfig);
+  const [comunas, setComunas] = useState<ComunaInfo[]>(comunasChileData as ComunaInfo[]);
   const [errors, setErrors] = useState<Record<string, string>>({});
   
   const [loading, setLoading] = useState(false);
@@ -156,32 +160,31 @@ export default function App() {
 
   const loadConfig = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/config');
+      const response = await fetch('/api/config').catch(() => fetch('http://localhost:3001/api/config'));
       const data = await response.json();
       if (data.success && data.config) {
         setConfig(data.config);
-        // Seleccionar los primeros IDs de la lista de configuración
         setFormData(prev => ({
           ...prev,
-          documentTypeId: data.config.documentTypes[0]?.id || '',
-          companyWorkplaceId: data.config.companyWorkplaces[0]?.id || '',
-          hsecAId: data.config.hsecProfessionals[0]?.id || ''
+          documentTypeId: prev.documentTypeId || data.config.documentTypes[0]?.id || '',
+          companyWorkplaceId: prev.companyWorkplaceId || data.config.companyWorkplaces[0]?.id || '',
+          hsecAId: prev.hsecAId || data.config.hsecProfessionals[0]?.id || ''
         }));
       }
     } catch (err) {
-      console.error('Error al cargar configuración:', err);
+      console.warn('Backend config no disponible temporalmente, usando configuración predeterminada:', err);
     }
   };
 
   const loadComunas = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/comunas');
+      const response = await fetch('/api/comunas').catch(() => fetch('http://localhost:3001/api/comunas'));
       const data = await response.json();
-      if (data.success) {
+      if (data.success && Array.isArray(data.comunas) && data.comunas.length > 0) {
         setComunas(data.comunas);
       }
     } catch (err) {
-      console.error('Error al cargar comunas:', err);
+      console.warn('Backend comunas no disponible temporalmente, usando catálogo local de 346 comunas:', err);
     }
   };
 
@@ -385,11 +388,15 @@ export default function App() {
         setLoadingMessage('Convirtiendo a PDF con LibreOffice Headless (esto puede tardar unos segundos)...');
       }, 2000);
 
-      const response = await fetch('http://localhost:3001/api/generate', {
+      const response = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
-      });
+      }).catch(() => fetch('http://localhost:3001/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      }));
 
       const result = await response.json();
 
