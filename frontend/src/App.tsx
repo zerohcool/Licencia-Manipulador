@@ -210,10 +210,23 @@ export default function App() {
   };
 
   const handleLoadRegistro = (datos: Record<string, any>, nombre: string, rut: string) => {
+    // Normalizar teléfono para que en el formulario solo se carguen los 8 dígitos
+    let cleanFono = '';
+    if (datos.Fono_) {
+      const allDigits = String(datos.Fono_).replace(/[^0-9]/g, '');
+      cleanFono = allDigits.length >= 8 ? allDigits.slice(-8) : allDigits;
+    }
+
     setFormData(prev => ({
       ...prev,
-      ...datos
+      ...datos,
+      Fono_: cleanFono
     }));
+    setErrors(prev => {
+      const copy = { ...prev };
+      delete copy.Fono_;
+      return copy;
+    });
     setCurrentStep(0);
     setView('form');
     setLoadedAlert({ nombre, rut });
@@ -345,8 +358,11 @@ export default function App() {
     // Buscar información extendida para el Mail Merge
     const hsecA = config.hsecProfessionals.find(h => h.id === formData.hsecAId);
 
-    // Concatenar el prefijo estático al teléfono
-    const telefonoFormateado = `+56 9 ${formData.Fono_.slice(0, 4)} ${formData.Fono_.slice(4)}`;
+    // Concatenar el prefijo estático al teléfono (asegurando 8 dígitos limpios)
+    const cleanFonoDigits = formData.Fono_.replace(/[^0-9]/g, '').slice(-8);
+    const telefonoFormateado = cleanFonoDigits.length === 8
+      ? `+56 9 ${cleanFonoDigits.slice(0, 4)} ${cleanFonoDigits.slice(4)}`
+      : formData.Fono_;
 
     // Armar el Domicilio Laboral unificado
     const domicilioLaboralUnificado = selectedCompanyWorkplace 
