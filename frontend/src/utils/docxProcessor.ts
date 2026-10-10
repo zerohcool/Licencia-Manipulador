@@ -161,6 +161,23 @@ export function fillMergeFieldsInBrowser(templateBinary: ArrayBuffer | Uint8Arra
     }
   }
 
+  // 2. Eliminar la vinculación de combinación de correspondencia (mailMerge) en word/settings.xml
+  // Esto evita la alerta de Word: "Al abrir este documento, se ejecutará el siguiente comando SQL..."
+  const settingsFile = zip.file('word/settings.xml');
+  if (settingsFile) {
+    let settingsXml = settingsFile.asText();
+    settingsXml = settingsXml.replace(/<w:mailMerge[\s\S]*?<\/w:mailMerge>/gi, '');
+    zip.file('word/settings.xml', settingsXml);
+  }
+
+  // 3. Eliminar la relación de origen externo en word/_rels/settings.xml.rels si existe
+  const relsFile = zip.file('word/_rels/settings.xml.rels');
+  if (relsFile) {
+    let relsXml = relsFile.asText();
+    relsXml = relsXml.replace(/<Relationship[^>]*?mailMergeSource[^>]*?\/>/gi, '');
+    zip.file('word/_rels/settings.xml.rels', relsXml);
+  }
+
   return zip.generate({
     type: 'blob',
     mimeType: 'application/vnd.ms-word.document.macroEnabled.12'

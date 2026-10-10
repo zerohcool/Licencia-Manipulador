@@ -1,4 +1,5 @@
 import { supabase } from './supabaseClient';
+import PizZip from 'pizzip';
 import defaultConfig from '../data/defaultConfig.json';
 import { DEFAULT_TEMPLATE_BASE64 } from '../data/defaultTemplateBase64';
 
@@ -109,10 +110,31 @@ export async function getActiveTemplate(): Promise<{ filename: string; binary: U
 export async function uploadActiveTemplate(file: File): Promise<{ success: boolean; filename: string; error?: string }> {
   try {
     const arrayBuffer = await file.arrayBuffer();
-    const bytes = new Uint8Array(arrayBuffer);
+
+    // Limpiar cualquier vinculación previa de mailMerge para evitar alertas de SQL en Word
+    let cleanBytes: Uint8Array;
+    try {
+      const zip = new PizZip(arrayBuffer);
+      const settingsFile = zip.file('word/settings.xml');
+      if (settingsFile) {
+        let settingsXml = settingsFile.asText();
+        settingsXml = settingsXml.replace(/<w:mailMerge[\s\S]*?<\/w:mailMerge>/gi, '');
+        zip.file('word/settings.xml', settingsXml);
+      }
+      const relsFile = zip.file('word/_rels/settings.xml.rels');
+      if (relsFile) {
+        let relsXml = relsFile.asText();
+        relsXml = relsXml.replace(/<Relationship[^>]*?mailMergeSource[^>]*?\/>/gi, '');
+        zip.file('word/_rels/settings.xml.rels', relsXml);
+      }
+      cleanBytes = zip.generate({ type: 'uint8array' });
+    } catch {
+      cleanBytes = new Uint8Array(arrayBuffer);
+    }
+
     let binaryStr = '';
-    for (let i = 0; i < bytes.byteLength; i++) {
-      binaryStr += String.fromCharCode(bytes[i]);
+    for (let i = 0; i < cleanBytes.byteLength; i++) {
+      binaryStr += String.fromCharCode(cleanBytes[i]);
     }
     const base64 = btoa(binaryStr);
 
