@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getSolicitudesRecords } from '../services/dataService';
+import { getSolicitudesRecords, deleteSolicitudRecord } from '../services/dataService';
 
 export interface SolicitudRegistro {
   id?: string;
@@ -29,6 +29,7 @@ export const RegistrosPanel: React.FC<RegistrosPanelProps> = ({
   const [source, setSource] = useState<'supabase' | 'local'>('supabase');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRegistro, setSelectedRegistro] = useState<SolicitudRegistro | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchRegistros();
@@ -81,8 +82,34 @@ export const RegistrosPanel: React.FC<RegistrosPanelProps> = ({
     }
   };
 
+  const handleDelete = async (reg: SolicitudRegistro) => {
+    if (!reg.id) return;
+    const confirmDelete = window.confirm(
+      `¿Estás seguro de que deseas eliminar este registro de ${reg.nombre_completo} (RUT: ${reg.rut})?\n\nEsta acción no se puede deshacer.`
+    );
+    if (!confirmDelete) return;
+
+    setDeletingId(reg.id);
+    try {
+      const res = await deleteSolicitudRecord(reg.id);
+      if (res.success) {
+        setRegistros(prev => prev.filter(r => r.id !== reg.id));
+        if (selectedRegistro?.id === reg.id) {
+          setSelectedRegistro(null);
+        }
+      } else {
+        alert(`Error al eliminar el registro: ${res.error || 'Ocurrió un error inesperado.'}`);
+      }
+    } catch (err: any) {
+      console.error(err);
+      alert('Error de conexión al intentar eliminar el registro.');
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
   return (
-    <div className="wizard-card" style={{ padding: '2rem' }}>
+    <div className="wizard-card" style={{ padding: 'clamp(1rem, 3vw, 2rem)' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
           <h2 style={{ fontSize: '1.4rem', fontWeight: 700, margin: 0, color: 'var(--text-primary)' }}>
@@ -93,7 +120,7 @@ export const RegistrosPanel: React.FC<RegistrosPanelProps> = ({
           </p>
         </div>
 
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <span style={{
             fontSize: '0.8rem',
             padding: '0.3rem 0.75rem',
@@ -126,20 +153,20 @@ export const RegistrosPanel: React.FC<RegistrosPanelProps> = ({
       </div>
 
       {/* Barra de búsqueda */}
-      <div style={{ marginBottom: '1.5rem', display: 'flex', gap: '1rem' }}>
+      <div style={{ marginBottom: '1.5rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
         <input
           type="text"
           placeholder="Buscar por RUT, Nombre, Empresa o Faena..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          style={{ maxWidth: '400px' }}
+          style={{ maxWidth: '400px', flex: '1 1 240px' }}
         />
         {searchTerm && (
           <button 
             type="button" 
             className="btn btn-secondary" 
             onClick={() => setSearchTerm('')}
-            style={{ padding: '0.45rem 0.9rem' }}
+            style={{ padding: '0.45rem 0.9rem', flexShrink: 0 }}
           >
             Limpiar filtro
           </button>
@@ -172,7 +199,7 @@ export const RegistrosPanel: React.FC<RegistrosPanelProps> = ({
           </button>
         </div>
       ) : (
-        <div style={{ overflowX: 'auto' }}>
+        <div className="table-responsive">
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
             <thead>
               <tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
@@ -208,19 +235,46 @@ export const RegistrosPanel: React.FC<RegistrosPanelProps> = ({
                       type="button"
                       className="btn btn-primary"
                       onClick={() => onLoadRegistro(reg.datos_formulario, reg.nombre_completo, reg.rut)}
-                      style={{ padding: '0.4rem 0.85rem', fontSize: '0.82rem', marginRight: '0.5rem' }}
+                      style={{ padding: '0.4rem 0.8rem', fontSize: '0.82rem', marginRight: '0.4rem' }}
                       title="Cargar estos datos en el formulario de asistente"
                     >
-                      ⚡ Cargar en Formulario
+                      Cargar
                     </button>
                     <button
                       type="button"
                       className="btn btn-secondary"
                       onClick={() => setSelectedRegistro(reg)}
-                      style={{ padding: '0.4rem 0.65rem', fontSize: '0.82rem' }}
+                      style={{ padding: '0.4rem 0.65rem', fontSize: '0.82rem', marginRight: '0.4rem' }}
                       title="Ver detalle del registro"
                     >
                       👁 Ver
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(reg)}
+                      disabled={deletingId === reg.id}
+                      style={{
+                        padding: '0.4rem 0.7rem',
+                        fontSize: '0.82rem',
+                        backgroundColor: '#fee2e2',
+                        color: '#b91c1c',
+                        border: '1px solid #fca5a5',
+                        borderRadius: 'var(--radius-md)',
+                        cursor: deletingId === reg.id ? 'not-allowed' : 'pointer',
+                        fontWeight: 600,
+                        transition: 'all var(--transition-fast)'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#ef4444';
+                        e.currentTarget.style.color = '#ffffff';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '#fee2e2';
+                        e.currentTarget.style.color = '#b91c1c';
+                      }}
+                      title="Eliminar este registro"
+                    >
+                      {deletingId === reg.id ? '...' : '🗑️ Eliminar'}
                     </button>
                   </td>
                 </tr>
@@ -300,25 +354,48 @@ export const RegistrosPanel: React.FC<RegistrosPanelProps> = ({
               </pre>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
               <button
                 type="button"
-                className="btn btn-secondary"
-                onClick={() => setSelectedRegistro(null)}
-              >
-                Cerrar
-              </button>
-              <button
-                type="button"
-                className="btn btn-primary"
                 onClick={() => {
                   const reg = selectedRegistro;
-                  setSelectedRegistro(null);
-                  onLoadRegistro(reg.datos_formulario, reg.nombre_completo, reg.rut);
+                  handleDelete(reg);
+                }}
+                disabled={deletingId === selectedRegistro.id}
+                style={{
+                  padding: '0.5rem 1rem',
+                  fontSize: '0.85rem',
+                  backgroundColor: '#fee2e2',
+                  color: '#b91c1c',
+                  border: '1px solid #fca5a5',
+                  borderRadius: 'var(--radius-md)',
+                  cursor: 'pointer',
+                  fontWeight: 600
                 }}
               >
-                ⚡ Cargar estos datos en el Formulario
+                🗑️ Eliminar Registro
               </button>
+
+              <div style={{ display: 'flex', gap: '0.75rem' }}>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setSelectedRegistro(null)}
+                >
+                  Cerrar
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => {
+                    const reg = selectedRegistro;
+                    setSelectedRegistro(null);
+                    onLoadRegistro(reg.datos_formulario, reg.nombre_completo, reg.rut);
+                  }}
+                >
+                  ⚡ Cargar en Formulario
+                </button>
+              </div>
             </div>
           </div>
         </div>

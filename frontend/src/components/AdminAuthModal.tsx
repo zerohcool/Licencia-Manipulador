@@ -55,7 +55,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
         borderRadius: '16px',
         maxWidth: '420px',
         width: '100%',
-        padding: '2rem',
+        padding: 'clamp(1.25rem, 4vw, 2rem)',
         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
         animation: 'modalPop 0.2s ease-out'
       }}>

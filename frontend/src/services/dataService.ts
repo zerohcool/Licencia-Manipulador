@@ -195,3 +195,24 @@ export async function getSolicitudesRecords(): Promise<{ success: boolean; data:
 
   return { success: true, data: [], source: 'local' };
 }
+
+/**
+ * 7. Eliminar Registro de Solicitud en Supabase
+ */
+export async function deleteSolicitudRecord(id: string): Promise<{ success: boolean; error?: string }> {
+  try {
+    const { error } = await supabase
+      .from('solicitudes_licencia')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      console.error('[DataService] Error al eliminar registro:', error);
+      return { success: false, error: error.message };
+    }
+
+    return { success: true };
+  } catch (err: any) {
+    return { success: false, error: err.message };
+  }
+}

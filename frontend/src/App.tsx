@@ -156,7 +156,6 @@ export default function App() {
   // Estados de generación directa en cliente y Supabase
   const [downloadBlobUrl, setDownloadBlobUrl] = useState<string | null>(null);
   const [downloadFilename, setDownloadFilename] = useState<string>('Solicitud_Licencia.docm');
-  const [registroId, setRegistroId] = useState<string | null>(null);
 
   useEffect(() => {
     loadConfig();
@@ -382,7 +381,7 @@ export default function App() {
 
     try {
       // 1. Guardar registro en Supabase (tabla solicitudes_licencia)
-      const saveRes = await saveSolicitudRecord({
+      await saveSolicitudRecord({
         rut: formData.Rut_,
         nombre_completo: formData.Nombre_Completo,
         empresa: selectedCompanyWorkplace ? selectedCompanyWorkplace.companyName : '',
@@ -392,9 +391,6 @@ export default function App() {
         motivo_solicitud: config.documentTypes.find(d => d.id === formData.documentTypeId)?.name || 'Solicitud de Licencia',
         datos_formulario: payload
       });
-
-      const recId = saveRes.id || `REG-${Date.now().toString().slice(-6)}`;
-      setRegistroId(recId);
 
       // 2. Obtener plantilla activa (.docm) desde Supabase
       setLoadingMessage('Obteniendo plantilla oficial desde Supabase...');
@@ -437,7 +433,6 @@ export default function App() {
       companyWorkplaceId: config?.companyWorkplaces[0]?.id || '',
       hsecAId: config?.hsecProfessionals[0]?.id || ''
     });
-    setRegistroId(null);
     setApiError(null);
     setCurrentStep(0);
   };
@@ -460,7 +455,7 @@ export default function App() {
         </div>
         
         {/* Navegación Superior */}
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+        <div className="header-nav">
           <button 
             className={`btn ${view === 'form' ? 'btn-primary' : 'btn-secondary'}`}
             style={{ padding: '0.45rem 0.9rem', fontSize: '0.85rem' }}
@@ -497,7 +492,7 @@ export default function App() {
             </button>
           )}
 
-          <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginLeft: '0.5rem', borderLeft: '1px solid var(--border)', paddingLeft: '0.75rem' }}>
+          <div className="header-date" style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginLeft: '0.5rem', borderLeft: '1px solid var(--border)', paddingLeft: '0.75rem' }}>
             Fecha: {formData.Fecha_Actual}
           </div>
         </div>
@@ -507,7 +502,6 @@ export default function App() {
         {view === 'config' ? (
           <ConfigPanel 
             onConfigChange={loadConfig} 
-            adminPassword={adminPassword}
             onLogoutAdmin={handleAdminLogout}
           />
         ) : view === 'registros' ? (
@@ -519,18 +513,23 @@ export default function App() {
           <div className="wizard-card">
             {/* Pasos */}
             {currentStep < 4 && (
-              <div className="steps-indicator">
-                {steps.map((step, idx) => (
-                  <div 
-                    key={step.id} 
-                    className={`step-item ${idx === currentStep ? 'active' : ''} ${idx < currentStep ? 'completed' : ''}`}
-                  >
-                    <div className="step-bubble">
-                      {idx < currentStep ? '✓' : step.id}
+              <div className="steps-container">
+                <div className="steps-indicator">
+                  {steps.map((step, idx) => (
+                    <div 
+                      key={step.id} 
+                      className={`step-item ${idx === currentStep ? 'active' : ''} ${idx < currentStep ? 'completed' : ''}`}
+                    >
+                      <div className="step-bubble">
+                        {idx < currentStep ? '✓' : step.id}
+                      </div>
+                      <div className="step-label">{step.label}</div>
                     </div>
-                    <div className="step-label">{step.label}</div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+                <div className="mobile-step-title">
+                  Paso {currentStep + 1} de {steps.length}: <strong>{steps[currentStep]?.label}</strong>
+                </div>
               </div>
             )}
 
@@ -964,12 +963,8 @@ export default function App() {
                         La solicitud ha sido registrada en Supabase y el archivo oficial Word (.docm) ha sido generado con todos los datos combinados.
                       </p>
                       
-                      <div className="result-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
+                      <div className="result-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
                         <div className="result-info" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                          <div className="success-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: '#ecfdf5', color: '#047857', border: '1px solid #a7f3d0', padding: '0.4rem 0.8rem', borderRadius: '8px', fontWeight: 600, fontSize: '0.9rem', width: 'fit-content' }}>
-                            <span>✓</span> Registro ID: {registroId ? (registroId.length > 12 ? registroId.substring(0, 8) + '...' : registroId) : 'Completado'}
-                          </div>
-                          
                           <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: 1.5, margin: 0 }}>
                             Haz clic a continuación para descargar el documento oficial con todos los campos del solicitante y de faena rellenados.
                           </p>
@@ -1007,17 +1002,25 @@ export default function App() {
                           <div style={{
                             background: '#f8fafc',
                             border: '1px solid #e2e8f0',
-                            borderRadius: '10px',
-                            padding: '1rem',
-                            fontSize: '0.86rem',
+                            borderRadius: '12px',
+                            padding: '1.25rem',
+                            fontSize: '0.88rem',
                             color: '#334155',
-                            lineHeight: 1.5,
+                            lineHeight: 1.6,
                             marginTop: '0.5rem'
                           }}>
-                            <div style={{ fontWeight: 600, color: '#1e293b', marginBottom: '0.35rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                              <span>💡</span> ¿Cómo exportar o imprimir en PDF?
+                            <div style={{ fontWeight: 700, color: '#1e293b', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.95rem' }}>
+                              <span>📋</span> Instrucciones de Envío
                             </div>
-                            <span>Abre el archivo descargado en Microsoft Word o LibreOffice y selecciona <strong>Archivo &gt; Guardar como PDF</strong> o <strong>Imprimir &gt; Guardar como PDF</strong> para obtener el documento oficial en formato PDF listo para firmar.</span>
+                            <p style={{ margin: '0 0 0.6rem 0', fontWeight: 500 }}>
+                              Se debe descargar este documento y enviarlo por correo a su administrativo adjuntando:
+                            </p>
+                            <ul style={{ margin: 0, paddingLeft: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                              <li>Fotografía digital para credencial</li>
+                              <li>Fotografía cédula identidad por ambos lados</li>
+                              <li>Certificado de Antecedentes para <strong>FINES ESPECIALES</strong></li>
+                              <li>Certificado de título legalizado <em>(Solo para Licencia de Programador Calculista)</em></li>
+                            </ul>
                           </div>
 
                           <button 

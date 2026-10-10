@@ -472,16 +472,16 @@ export default function ConfigPanel({ onConfigChange, onLogoutAdmin }: ConfigPan
   if (!config) return <div className="loading-overlay"><div className="spinner"></div><p>Cargando Configuración...</p></div>;
 
   return (
-    <div style={{ background: 'white', borderRadius: 'var(--radius-lg)', padding: '2rem', boxShadow: 'var(--shadow-lg)' }}>
+    <div style={{ background: 'white', borderRadius: 'var(--radius-lg)', padding: 'clamp(1rem, 3vw, 2rem)', boxShadow: 'var(--shadow-lg)' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <h2 style={{ fontSize: '1.75rem', fontWeight: 700, margin: 0 }}>Panel de Configuración</h2>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <h2 style={{ fontSize: 'clamp(1.25rem, 4vw, 1.75rem)', fontWeight: 700, margin: 0 }}>Panel de Configuración</h2>
             <span style={{ fontSize: '0.8rem', padding: '0.2rem 0.65rem', borderRadius: '12px', backgroundColor: 'hsl(142, 70%, 93%)', color: 'hsl(142, 70%, 25%)', fontWeight: 600 }}>
               🛡️ Modo Administrador
             </span>
           </div>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', margin: '0.3rem 0 0' }}>Administración de parámetros, plantillas y catálogos de la aplicación.</p>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', margin: '0.3rem 0 0' }}>Administración de parámetros, plantillas y catálogos de la aplicación.</p>
         </div>
         {onLogoutAdmin && (
           <button 
@@ -510,7 +510,17 @@ export default function ConfigPanel({ onConfigChange, onLogoutAdmin }: ConfigPan
       )}
 
       {/* Tabs */}
-      <div style={{ display: 'flex', gap: '0.5rem', borderBottom: '1px solid var(--border)', marginBottom: '2rem' }}>
+      <div style={{ 
+        display: 'flex', 
+        gap: '0.5rem', 
+        borderBottom: '1px solid var(--border)', 
+        marginBottom: '2rem', 
+        overflowX: 'auto', 
+        flexWrap: 'nowrap', 
+        WebkitOverflowScrolling: 'touch',
+        scrollbarWidth: 'none',
+        paddingBottom: '2px'
+      }}>
         <button 
           className="btn" 
           style={{ 
